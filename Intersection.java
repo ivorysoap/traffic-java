@@ -1,16 +1,16 @@
 public class Intersection {
 
-    enum Type {
-        TWO_WAY,
-        THREE_WAY,
-        FOUR_WAY
-    }
 
-    Type intersectionType;
+    private IntersectionType intersectionType;
+    private Signal[] signals = new Signal[intersectionType.getIndex()];
+
 
     // Constructor
-    public Intersection(Type type) { 
-        intersectionType = type;
+    public Intersection(IntersectionType intersectionType) { 
+        this.intersectionType = intersectionType;
+        
+        // Logic to fill signals here
+            
     }
 
 

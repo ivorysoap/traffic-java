@@ -1,7 +1,6 @@
 public class Traffic {
-    
 
-    private static final Intersection intersection = new Intersection(Intersection.Type.FOUR_WAY);
+    private static final Intersection intersection = new Intersection(IntersectionType.FOUR_WAY);
 
     public static void main(String[] args) {
 
