@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Traffic {
 
     private static final Intersection intersection = new Intersection(IntersectionType.FOUR_WAY);
@@ -6,6 +8,7 @@ public class Traffic {
 
         System.out.println("Hello, world!");
         System.out.println("Haven't used Java in a while");
+        System.out.println(intersection);
 
     }
 

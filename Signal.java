@@ -18,8 +18,13 @@ public class Signal {
         OUT_OF_SERVICE        
     }
 
-    private final Type type;
-    private State state;
+    private Type type = Type.STANDARD;
+    private State state = State.RED;
+
+    public Signal(){
+
+
+    }
 
 
     // Constructor
