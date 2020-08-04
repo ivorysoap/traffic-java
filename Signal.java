@@ -1,5 +1,6 @@
 public class Signal {
 
+    //TODO put these enums into their own files
     enum Type {
         STANDARD,
         PROTECTED_LEFT
@@ -15,21 +16,21 @@ public class Signal {
         GREEN_PROTECTED_AMBER,
         FLASHING_RED,
         FLASHING_AMBER,
-        OUT_OF_SERVICE        
+        OUT_OF_SERVICE
     }
 
     private Type type = Type.STANDARD;
     private State state = State.RED;
 
-    public Signal(){
-
+    // Default constructor
+    public Signal() {
 
     }
 
 
     // Constructor
-    public Signal(Type type, State state){
-        
+    public Signal(Type type, State state) {
+
         this.type = type;
         this.state = state;
 
@@ -37,12 +38,20 @@ public class Signal {
 
 
     // Getters
-    public Type getType(){ return type; }
+    public Type getType() {
+        return type;
+    }
 
-    public State getState(){ return state; }
+    public State getState() {
+        return state;
+    }
 
     //Setters
-    public void setState(State state){ this.state = state; }
+    public void setState(State state) {
+        this.state = state;
+    }
 
-    
+
+
+
 }

@@ -8,7 +8,7 @@ public enum IntersectionType {
     private final int index;
 
     // Constructor
-    private IntersectionType(int index) {
+    IntersectionType(int index) {
         this.index = index;
     }
 
