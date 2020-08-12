@@ -1,7 +1,7 @@
 public enum IntersectionType {
 
-    TWO_WAY(2),
-    THREE_WAY(3),
+    TWO_WAY(2),     // Unimplemented
+    THREE_WAY(3),   // Unimplemented
     FOUR_WAY(4);
 
     

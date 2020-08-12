@@ -3,19 +3,19 @@ public class Signal {
     //TODO put these enums into their own files
     enum Type {
         STANDARD,
-        PROTECTED_LEFT
+        PROTECTED_LEFT          // Unimplemented
     }
 
     enum State {
         RED,
         AMBER,
         GREEN,
-        RED_PROTECTED_GREEN,
-        RED_PROTECTED_AMBER,
-        GREEN_PROTECTED_GREEN,
-        GREEN_PROTECTED_AMBER,
-        FLASHING_RED,
-        FLASHING_AMBER,
+        RED_PROTECTED_GREEN,    // Unimplemented
+        RED_PROTECTED_AMBER,    // Unimplemented
+        GREEN_PROTECTED_GREEN,  // Unimplemented
+        GREEN_PROTECTED_AMBER,  // Unimplemented
+        FLASHING_RED,           // Unimplemented
+        FLASHING_AMBER,         // Unimplemented
         OUT_OF_SERVICE
     }
 

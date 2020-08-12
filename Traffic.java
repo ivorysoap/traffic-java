@@ -6,8 +6,6 @@ public class Traffic {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello, world!");
-        System.out.println("Haven't used Java in a while");
         System.out.println(intersection);
 
     }
