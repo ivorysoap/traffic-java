@@ -1,4 +1,7 @@
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Intersection {
 
@@ -20,9 +23,11 @@ public class Intersection {
 
         for(int i = 0; i < intersectionType.getIndex(); i++)
             signals.add(new Signal());
+
+        this.main();
     }
 
-    public void main(String[] args) {
+    public void main() {
 
         if(this.disabled) {
             setSignalStates(Signal.State.FLASHING_RED);
@@ -32,7 +37,12 @@ public class Intersection {
             setSignalStates(Signal.State.RED);
 
             while(!this.disabled) {
-                // Intersection behaviour goes here
+                try {
+                    runIntersection();  // Main behaviour of the intersection is here.
+                }
+                catch(InterruptedException e) {
+                    System.out.println("Caught exception: " + e);
+                }
             }
         }
 
@@ -53,7 +63,8 @@ public class Intersection {
      * @param direction which traffic light to change.
      */
     private void setSignalStates(Signal.State state, Direction direction) {
-        // Unimplemented
+        // TODO Implement this method
+        // TODO Make the 'signals' ArrayList indexable by direction.
     }
 
     /**
@@ -63,7 +74,23 @@ public class Intersection {
      * @param direction2 one of the traffic lights to change.
      */
     private void setSignalStates(Signal.State state, Direction direction1, Direction direction2) {
-        // Unimplemented
+        // TODO Implement this method
+        // TODO Make the 'signals' ArrayList indexable by direction.
+    }
+
+    /**
+     * Method for controlling the intersection.
+     */
+    private void runIntersection() throws InterruptedException {
+
+        setSignalStates(Signal.State.RED);
+
+        TimeUnit.SECONDS.sleep(5);
+
+        setSignalStates(Signal.State.GREEN, Direction.NORTH, Direction.SOUTH);
+
+        System.out.println(this.toString());
+
     }
 
     /**

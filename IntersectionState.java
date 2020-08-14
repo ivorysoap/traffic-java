@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public enum IntersectionState {
+public enum IntersectionState {
+
+    NORTH_SOUTH
+
 }
