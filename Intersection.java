@@ -9,14 +9,6 @@ public class Intersection {
     private final ArrayList<Signal> signals = new ArrayList<Signal>();
     private boolean disabled = false;
 
-    enum Direction {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST;
-    }
-
-
     // Constructor
     public Intersection(IntersectionType intersectionType) {
         this.intersectionType = intersectionType;
@@ -62,7 +54,7 @@ public class Intersection {
      * @param state the state to set.
      * @param direction which traffic light to change.
      */
-    private void setSignalStates(Signal.State state, Direction direction) {
+    private void setSignalStates(Signal.State state, SignalDirection direction) {
         // TODO Implement this method
         // TODO Make the 'signals' ArrayList indexable by direction.
     }
@@ -73,7 +65,7 @@ public class Intersection {
      * @param direction1 one of the traffic lights to change.
      * @param direction2 one of the traffic lights to change.
      */
-    private void setSignalStates(Signal.State state, Direction direction1, Direction direction2) {
+    private void setSignalStates(Signal.State state, SignalDirection direction1, SignalDirection direction2) {
         // TODO Implement this method
         // TODO Make the 'signals' ArrayList indexable by direction.
     }
@@ -87,7 +79,7 @@ public class Intersection {
 
         TimeUnit.SECONDS.sleep(5);
 
-        setSignalStates(Signal.State.GREEN, Direction.NORTH, Direction.SOUTH);
+        setSignalStates(Signal.State.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
 
         System.out.println(this.toString());
 
