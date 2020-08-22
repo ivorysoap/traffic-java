@@ -55,8 +55,9 @@ public class Intersection {
      * @param direction which traffic light to change.
      */
     private void setSignalStates(Signal.State state, SignalDirection direction) {
-        // TODO Implement this method
-        // TODO Make the 'signals' ArrayList indexable by direction.
+
+        this.signals.get(direction.getIndex()).setState(state);
+
     }
 
     /**
@@ -66,8 +67,10 @@ public class Intersection {
      * @param direction2 one of the traffic lights to change.
      */
     private void setSignalStates(Signal.State state, SignalDirection direction1, SignalDirection direction2) {
-        // TODO Implement this method
-        // TODO Make the 'signals' ArrayList indexable by direction.
+
+        this.signals.get(direction1.getIndex()).setState(state);
+        this.signals.get(direction2.getIndex()).setState(state);
+
     }
 
     /**
