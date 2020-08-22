@@ -19,23 +19,18 @@ public class Intersection {
         this.main();
     }
 
+
     public void main() {
 
         if(this.disabled) {
             setSignalStates(Signal.State.FLASHING_RED);
         }
-        else if(!this.disabled) {
+        else {
 
-            setSignalStates(Signal.State.RED);
+            initIntersection();
 
-            while(!this.disabled) {
-                try {
-                    runIntersection();  // Main behaviour of the intersection is here.
-                }
-                catch(InterruptedException e) {
-                    System.out.println("Caught exception: " + e);
-                }
-            }
+            runIntersection();  // Main behaviour of the intersection is here.
+
         }
 
     }
@@ -73,51 +68,69 @@ public class Intersection {
 
     }
 
+
     /**
-     * Method for controlling the intersection.
+     * Initialize the intersection by setting the lights to red.
      */
-    private void runIntersection() throws InterruptedException {
+    private void initIntersection() {
 
         setSignalStates(Signal.State.RED);
 
-        TimeUnit.SECONDS.sleep(5);
+    }
 
-        setSignalStates(Signal.State.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-        System.out.println(this.toString());  // Debug print
+    /**
+     * Main behaviour of the intersection is driven by this method.
+     */
+    private void runIntersection() {
 
-        TimeUnit.SECONDS.sleep(15);
+        while (!this.disabled) {
 
-        setSignalStates(Signal.State.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
+            try {
 
-        System.out.println(this.toString());  // Debug print
+                setSignalStates(Signal.State.RED);
 
-        TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(5);
 
-        setSignalStates(Signal.State.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
+                setSignalStates(Signal.State.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-        System.out.println(this.toString());  // Debug print
+                System.out.println(this.toString());  // Debug print
 
-        TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(15);
 
-        setSignalStates(Signal.State.GREEN, SignalDirection.EAST, SignalDirection.WEST);
+                setSignalStates(Signal.State.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-        System.out.println(this.toString());  // Debug print
+                System.out.println(this.toString());  // Debug print
 
-        TimeUnit.SECONDS.sleep(15);
+                TimeUnit.SECONDS.sleep(5);
 
-        setSignalStates(Signal.State.AMBER, SignalDirection.EAST, SignalDirection.WEST);
+                setSignalStates(Signal.State.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-        System.out.println(this.toString());  // Debug print
+                System.out.println(this.toString());  // Debug print
 
-        TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(5);
 
-        setSignalStates(Signal.State.RED, SignalDirection.EAST, SignalDirection.WEST);
+                setSignalStates(Signal.State.GREEN, SignalDirection.EAST, SignalDirection.WEST);
 
-        System.out.println(this.toString());  // Debug print
+                System.out.println(this.toString());  // Debug print
 
-        System.exit(0);
+                TimeUnit.SECONDS.sleep(15);
 
+                setSignalStates(Signal.State.AMBER, SignalDirection.EAST, SignalDirection.WEST);
+
+                System.out.println(this.toString());  // Debug print
+
+                TimeUnit.SECONDS.sleep(5);
+
+                setSignalStates(Signal.State.RED, SignalDirection.EAST, SignalDirection.WEST);
+
+                System.out.println(this.toString());  // Debug print
+
+
+            } catch (InterruptedException e) {
+                System.out.println("Caught an InterruptException: " + e);
+            }
+        }
     }
 
     /**
@@ -125,14 +138,14 @@ public class Intersection {
      * @return string representation.
      */
     @Override
-    public String toString(){
+    public String toString() {
 
         String output = intersectionType + Integer.toString(this.hashCode()) + "\nSignals list:\n";
 
-        output += "|\t" + signals.get(0) + "\tNORTH\t\t" + "Current state: " + signals.get(0).getState() + "\n";
-        output += "|\t" +  signals.get(1) + "\tEAST\t\t" + "Current state: " + signals.get(1).getState() + "\n";
-        output += "|\t" +  signals.get(2) + "\tSOUTH\t\t" + "Current state: " + signals.get(2).getState() + "\n";
-        output += "|\t" +  signals.get(3) + "\tWEST\t\t" + "Current state: " + signals.get(3).getState() + "\n";
+        output += "├── " + signals.get(0) + "\tNORTH\t\t" + "Current state: " + signals.get(0).getState() + "\n";
+        output += "├── " +  signals.get(1) + "\tEAST\t\t" + "Current state: " + signals.get(1).getState() + "\n";
+        output += "├── " +  signals.get(2) + "\tSOUTH\t\t" + "Current state: " + signals.get(2).getState() + "\n";
+        output += "└── " +  signals.get(3) + "\tWEST\t\t" + "Current state: " + signals.get(3).getState() + "\n";
 
         return output;
 
