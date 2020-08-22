@@ -1,5 +1,3 @@
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -36,6 +34,78 @@ public class Intersection {
     }
 
     /**
+     * Initialize the intersection by setting the lights to red.
+     */
+    private void initIntersection() {
+
+        setSignalStates(Signal.State.RED);
+
+    }
+
+
+    /**
+     * Main behaviour of the intersection is driven by this method.
+     */
+    private void runIntersection() {
+
+        try {
+
+            if(!intersectionInitialized()) {
+                throw new IllegalStateException("The intersection was not initialized to an all-red state.");  // TODO use a better exception
+            }
+            else {
+
+                while (!this.disabled) {
+
+                    setSignalStates(Signal.State.RED);
+
+                    TimeUnit.SECONDS.sleep(5);
+
+                    setSignalStates(Signal.State.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
+
+                    System.out.println(this.toString());  // Debug print
+
+                    TimeUnit.SECONDS.sleep(15);
+
+                    setSignalStates(Signal.State.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
+
+                    System.out.println(this.toString());  // Debug print
+
+                    TimeUnit.SECONDS.sleep(5);
+
+                    setSignalStates(Signal.State.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
+
+                    System.out.println(this.toString());  // Debug print
+
+                    TimeUnit.SECONDS.sleep(5);
+
+                    setSignalStates(Signal.State.GREEN, SignalDirection.EAST, SignalDirection.WEST);
+
+                    System.out.println(this.toString());  // Debug print
+
+                    TimeUnit.SECONDS.sleep(15);
+
+                    setSignalStates(Signal.State.AMBER, SignalDirection.EAST, SignalDirection.WEST);
+
+                    System.out.println(this.toString());  // Debug print
+
+                    TimeUnit.SECONDS.sleep(5);
+
+                    setSignalStates(Signal.State.RED, SignalDirection.EAST, SignalDirection.WEST);
+
+                    System.out.println(this.toString());  // Debug print
+
+                }
+
+
+            }
+        } catch (InterruptedException | IllegalStateException e) {
+            System.out.println("Caught an exception: " + e);
+        }
+    }
+
+
+    /**
      * Set the state of ALL the signals in this Intersection's list of signals, all at once.
      * @param state the state to set.
      */
@@ -68,69 +138,21 @@ public class Intersection {
 
     }
 
-
     /**
-     * Initialize the intersection by setting the lights to red.
+     * Returns true if all the signals in the intersection are red, or false otherwise.
+     * @return the readiness state of the intersection.
      */
-    private void initIntersection() {
+    private boolean intersectionInitialized() {
 
-        setSignalStates(Signal.State.RED);
+        boolean readiness = true;
 
-    }
-
-
-    /**
-     * Main behaviour of the intersection is driven by this method.
-     */
-    private void runIntersection() {
-
-        while (!this.disabled) {
-
-            try {
-
-                setSignalStates(Signal.State.RED);
-
-                TimeUnit.SECONDS.sleep(5);
-
-                setSignalStates(Signal.State.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
-
-                System.out.println(this.toString());  // Debug print
-
-                TimeUnit.SECONDS.sleep(15);
-
-                setSignalStates(Signal.State.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
-
-                System.out.println(this.toString());  // Debug print
-
-                TimeUnit.SECONDS.sleep(5);
-
-                setSignalStates(Signal.State.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
-
-                System.out.println(this.toString());  // Debug print
-
-                TimeUnit.SECONDS.sleep(5);
-
-                setSignalStates(Signal.State.GREEN, SignalDirection.EAST, SignalDirection.WEST);
-
-                System.out.println(this.toString());  // Debug print
-
-                TimeUnit.SECONDS.sleep(15);
-
-                setSignalStates(Signal.State.AMBER, SignalDirection.EAST, SignalDirection.WEST);
-
-                System.out.println(this.toString());  // Debug print
-
-                TimeUnit.SECONDS.sleep(5);
-
-                setSignalStates(Signal.State.RED, SignalDirection.EAST, SignalDirection.WEST);
-
-                System.out.println(this.toString());  // Debug print
-
-
-            } catch (InterruptedException e) {
-                System.out.println("Caught an InterruptException: " + e);
-            }
+        for(Signal signal : signals) {
+            if(signal.getState() != Signal.State.RED)
+                readiness = false;
         }
+
+        return readiness;
+
     }
 
     /**
