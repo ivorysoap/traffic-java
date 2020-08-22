@@ -84,7 +84,39 @@ public class Intersection {
 
         setSignalStates(Signal.State.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-        System.out.println(this.toString());
+        System.out.println(this.toString());  // Debug print
+
+        TimeUnit.SECONDS.sleep(15);
+
+        setSignalStates(Signal.State.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
+
+        System.out.println(this.toString());  // Debug print
+
+        TimeUnit.SECONDS.sleep(5);
+
+        setSignalStates(Signal.State.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
+
+        System.out.println(this.toString());  // Debug print
+
+        TimeUnit.SECONDS.sleep(5);
+
+        setSignalStates(Signal.State.GREEN, SignalDirection.EAST, SignalDirection.WEST);
+
+        System.out.println(this.toString());  // Debug print
+
+        TimeUnit.SECONDS.sleep(15);
+
+        setSignalStates(Signal.State.AMBER, SignalDirection.EAST, SignalDirection.WEST);
+
+        System.out.println(this.toString());  // Debug print
+
+        TimeUnit.SECONDS.sleep(5);
+
+        setSignalStates(Signal.State.RED, SignalDirection.EAST, SignalDirection.WEST);
+
+        System.out.println(this.toString());  // Debug print
+
+        System.exit(0);
 
     }
 
