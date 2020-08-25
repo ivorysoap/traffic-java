@@ -5,7 +5,8 @@ public class Intersection {
 
     private final IntersectionType intersectionType;
     private final ArrayList<Signal> signals = new ArrayList<Signal>();
-    private boolean disabled = false;
+    private boolean enabled = true;
+    private boolean queuingEnabled = false;
 
     // Constructor
     public Intersection(IntersectionType intersectionType) {
@@ -20,7 +21,7 @@ public class Intersection {
 
     public void main() {
 
-        if(this.disabled) {
+        if(!this.enabled) {
             setSignalStates(Signal.State.FLASHING_RED);
         }
         else {
@@ -55,7 +56,7 @@ public class Intersection {
             }
             else {
 
-                while (!this.disabled) {
+                while (this.enabled) {
 
                     setSignalStates(Signal.State.RED);
 
@@ -164,10 +165,10 @@ public class Intersection {
 
         String output = intersectionType + Integer.toString(this.hashCode()) + "\nSignals list:\n";
 
-        output += "├── " + signals.get(0) + "\tNORTH\t\t" + "Current state: " + signals.get(0).getState() + "\n";
-        output += "├── " +  signals.get(1) + "\tEAST\t\t" + "Current state: " + signals.get(1).getState() + "\n";
-        output += "├── " +  signals.get(2) + "\tSOUTH\t\t" + "Current state: " + signals.get(2).getState() + "\n";
-        output += "└── " +  signals.get(3) + "\tWEST\t\t" + "Current state: " + signals.get(3).getState() + "\n";
+        output += "├── " + signals.get(0) + "\tNORTH\t\t" + "Current state: " + signals.get(0).getState() + "\t\tWaiting vehicles: " + signals.get(0).getQueueLength() + "\n";
+        output += "├── " +  signals.get(1) + "\tEAST\t\t" + "Current state: " + signals.get(1).getState() + "\t\tWaiting vehicles: " + signals.get(1).getQueueLength() + "\n";
+        output += "├── " +  signals.get(2) + "\tSOUTH\t\t" + "Current state: " + signals.get(2).getState() + "\t\tWaiting vehicles: " + signals.get(2).getQueueLength() + "\n";
+        output += "└── " +  signals.get(3) + "\tWEST\t\t" + "Current state: " + signals.get(3).getState() + "\t\tWaiting vehicles: " + signals.get(3).getQueueLength() + "\n";
 
         return output;
 
