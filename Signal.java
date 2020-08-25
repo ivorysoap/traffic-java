@@ -21,6 +21,7 @@ public class Signal {
 
     private Type type = Type.STANDARD;
     private State state = State.RED;
+    private int queueLength = 0;
 
     // Default constructor
     public Signal() {
@@ -46,11 +47,16 @@ public class Signal {
         return state;
     }
 
+    public int getQueueLength() { return queueLength; }
+
     //Setters
     public void setState(State state) {
         this.state = state;
     }
 
+    public void enqueue() { queueLength++; }
+
+    public void dequeue() { queueLength--; }
 
 
 
