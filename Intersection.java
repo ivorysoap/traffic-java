@@ -22,7 +22,7 @@ public class Intersection {
     public void main() {
 
         if(!this.enabled) {
-            setSignalStates(Signal.State.FLASHING_RED);
+            setSignalStates(SignalState.FLASHING_RED);
         }
         else {
 
@@ -39,7 +39,7 @@ public class Intersection {
      */
     private void initIntersection() {
 
-        setSignalStates(Signal.State.RED);
+        setSignalStates(SignalState.RED);
 
     }
 
@@ -58,41 +58,41 @@ public class Intersection {
 
                 while (this.enabled) {
 
-                    setSignalStates(Signal.State.RED);
+                    setSignalStates(SignalState.RED);
 
                     TimeUnit.SECONDS.sleep(5);
 
-                    setSignalStates(Signal.State.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
+                    setSignalStates(SignalState.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
 
                     System.out.println(this.toString());  // Debug print
 
                     TimeUnit.SECONDS.sleep(15);
 
-                    setSignalStates(Signal.State.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
+                    setSignalStates(SignalState.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
 
                     System.out.println(this.toString());  // Debug print
 
                     TimeUnit.SECONDS.sleep(5);
 
-                    setSignalStates(Signal.State.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
+                    setSignalStates(SignalState.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
 
                     System.out.println(this.toString());  // Debug print
 
                     TimeUnit.SECONDS.sleep(5);
 
-                    setSignalStates(Signal.State.GREEN, SignalDirection.EAST, SignalDirection.WEST);
+                    setSignalStates(SignalState.GREEN, SignalDirection.EAST, SignalDirection.WEST);
 
                     System.out.println(this.toString());  // Debug print
 
                     TimeUnit.SECONDS.sleep(15);
 
-                    setSignalStates(Signal.State.AMBER, SignalDirection.EAST, SignalDirection.WEST);
+                    setSignalStates(SignalState.AMBER, SignalDirection.EAST, SignalDirection.WEST);
 
                     System.out.println(this.toString());  // Debug print
 
                     TimeUnit.SECONDS.sleep(5);
 
-                    setSignalStates(Signal.State.RED, SignalDirection.EAST, SignalDirection.WEST);
+                    setSignalStates(SignalState.RED, SignalDirection.EAST, SignalDirection.WEST);
 
                     System.out.println(this.toString());  // Debug print
 
@@ -110,7 +110,7 @@ public class Intersection {
      * Set the state of ALL the signals in this Intersection's list of signals, all at once.
      * @param state the state to set.
      */
-    private void setSignalStates(Signal.State state) {
+    private void setSignalStates(SignalState state) {
         for(Signal signal : this.signals)
             signal.setState(state);
     }
@@ -120,7 +120,7 @@ public class Intersection {
      * @param state the state to set.
      * @param direction which traffic light to change.
      */
-    private void setSignalStates(Signal.State state, SignalDirection direction) {
+    private void setSignalStates(SignalState state, SignalDirection direction) {
 
         this.signals.get(direction.getIndex()).setState(state);
 
@@ -132,7 +132,7 @@ public class Intersection {
      * @param direction1 one of the traffic lights to change.
      * @param direction2 one of the traffic lights to change.
      */
-    private void setSignalStates(Signal.State state, SignalDirection direction1, SignalDirection direction2) {
+    private void setSignalStates(SignalState state, SignalDirection direction1, SignalDirection direction2) {
 
         this.signals.get(direction1.getIndex()).setState(state);
         this.signals.get(direction2.getIndex()).setState(state);
@@ -148,7 +148,7 @@ public class Intersection {
         boolean readiness = true;
 
         for(Signal signal : signals) {
-            if(signal.getState() != Signal.State.RED)
+            if(signal.getState() != SignalState.RED)
                 readiness = false;
         }
 

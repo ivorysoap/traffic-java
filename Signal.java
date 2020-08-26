@@ -6,21 +6,8 @@ public class Signal {
         PROTECTED_LEFT          // Unimplemented
     }
 
-    enum State {
-        RED,
-        AMBER,
-        GREEN,
-        RED_PROTECTED_GREEN,    // Unimplemented
-        RED_PROTECTED_AMBER,    // Unimplemented
-        GREEN_PROTECTED_GREEN,  // Unimplemented
-        GREEN_PROTECTED_AMBER,  // Unimplemented
-        FLASHING_RED,           // Unimplemented
-        FLASHING_AMBER,         // Unimplemented
-        OUT_OF_SERVICE
-    }
-
     private Type type = Type.STANDARD;
-    private State state = State.RED;
+    private SignalState state = SignalState.RED;
     private int queueLength = 0;
 
     // Default constructor
@@ -30,7 +17,7 @@ public class Signal {
 
 
     // Constructor
-    public Signal(Type type, State state) {
+    public Signal(Type type, SignalState state) {
 
         this.type = type;
         this.state = state;
@@ -43,14 +30,14 @@ public class Signal {
         return type;
     }
 
-    public State getState() {
+    public SignalState getState() {
         return state;
     }
 
     public int getQueueLength() { return queueLength; }
 
     //Setters
-    public void setState(State state) {
+    public void setState(SignalState state) {
         this.state = state;
     }
 
