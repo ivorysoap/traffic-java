@@ -12,7 +12,7 @@ public class Intersection {
     public Intersection(IntersectionType intersectionType) {
         this.intersectionType = intersectionType;
 
-        for(int i = 0; i < intersectionType.getIndex(); i++)
+        for (int i = 0; i < intersectionType.getIndex(); i++)
             signals.add(new Signal());
 
         this.main();
@@ -21,10 +21,9 @@ public class Intersection {
 
     public void main() {
 
-        if(!this.enabled) {
+        if (!this.enabled) {
             setSignalStates(SignalState.FLASHING_RED);
-        }
-        else {
+        } else {
 
             initIntersection();
 
@@ -51,10 +50,9 @@ public class Intersection {
 
         try {
 
-            if(!intersectionInitialized()) {
+            if (!intersectionInitialized()) {
                 throw new IllegalStateException("The intersection was not initialized to an all-red state.");  // TODO use a better exception
-            }
-            else {
+            } else {
 
                 while (this.enabled) {
 
@@ -108,16 +106,18 @@ public class Intersection {
 
     /**
      * Set the state of ALL the signals in this Intersection's list of signals, all at once.
+     *
      * @param state the state to set.
      */
     private void setSignalStates(SignalState state) {
-        for(Signal signal : this.signals)
+        for (Signal signal : this.signals)
             signal.setState(state);
     }
 
     /**
      * Set the state of ONE the signals in this Intersection's list of signals, based on the direction of traffic it manages.
-     * @param state the state to set.
+     *
+     * @param state     the state to set.
      * @param direction which traffic light to change.
      */
     private void setSignalStates(SignalState state, SignalDirection direction) {
@@ -128,7 +128,8 @@ public class Intersection {
 
     /**
      * Set the state of TWO the signals in this Intersection's list of signals.
-     * @param state the state to set.
+     *
+     * @param state      the state to set.
      * @param direction1 one of the traffic lights to change.
      * @param direction2 one of the traffic lights to change.
      */
@@ -141,14 +142,15 @@ public class Intersection {
 
     /**
      * Returns true if all the signals in the intersection are red, or false otherwise.
+     *
      * @return the readiness state of the intersection.
      */
     private boolean intersectionInitialized() {
 
         boolean readiness = true;
 
-        for(Signal signal : signals) {
-            if(signal.getState() != SignalState.RED)
+        for (Signal signal : signals) {
+            if (signal.getState() != SignalState.RED)
                 readiness = false;
         }
 
@@ -158,6 +160,7 @@ public class Intersection {
 
     /**
      * String representation of an Intersection.
+     *
      * @return string representation.
      */
     @Override
@@ -166,15 +169,13 @@ public class Intersection {
         String output = intersectionType + Integer.toString(this.hashCode()) + "\nSignals list:\n";
 
         output += "├── " + signals.get(0) + "\tNORTH\t\t" + "Current state: " + signals.get(0).getState() + "\t\tWaiting vehicles: " + signals.get(0).getQueueLength() + "\n";
-        output += "├── " +  signals.get(1) + "\tEAST\t\t" + "Current state: " + signals.get(1).getState() + "\t\tWaiting vehicles: " + signals.get(1).getQueueLength() + "\n";
-        output += "├── " +  signals.get(2) + "\tSOUTH\t\t" + "Current state: " + signals.get(2).getState() + "\t\tWaiting vehicles: " + signals.get(2).getQueueLength() + "\n";
-        output += "└── " +  signals.get(3) + "\tWEST\t\t" + "Current state: " + signals.get(3).getState() + "\t\tWaiting vehicles: " + signals.get(3).getQueueLength() + "\n";
+        output += "├── " + signals.get(1) + "\tEAST\t\t" + "Current state: " + signals.get(1).getState() + "\t\tWaiting vehicles: " + signals.get(1).getQueueLength() + "\n";
+        output += "├── " + signals.get(2) + "\tSOUTH\t\t" + "Current state: " + signals.get(2).getState() + "\t\tWaiting vehicles: " + signals.get(2).getQueueLength() + "\n";
+        output += "└── " + signals.get(3) + "\tWEST\t\t" + "Current state: " + signals.get(3).getState() + "\t\tWaiting vehicles: " + signals.get(3).getQueueLength() + "\n";
 
         return output;
 
     }
-
-
 
 
 }

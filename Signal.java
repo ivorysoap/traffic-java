@@ -34,17 +34,22 @@ public class Signal {
         return state;
     }
 
-    public int getQueueLength() { return queueLength; }
+    public int getQueueLength() {
+        return queueLength;
+    }
 
     //Setters
     public void setState(SignalState state) {
         this.state = state;
     }
 
-    public void enqueue() { queueLength++; }
+    public void enqueue() {
+        queueLength++;
+    }
 
-    public void dequeue() { queueLength--; }
-
+    public void dequeue() {
+        queueLength--;
+    }
 
 
 }
