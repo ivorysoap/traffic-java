@@ -54,46 +54,53 @@ public class Intersection {
                 throw new IllegalStateException("The intersection was not initialized to an all-red state.");  // TODO use a better exception
             } else {
 
-                while (this.enabled) {
+                if (this.intersectionType == IntersectionType.FOUR_WAY) {
 
-                    setSignalStates(SignalState.RED);
+                    while (this.enabled) {
 
-                    TimeUnit.SECONDS.sleep(5);
+                        setSignalStates(SignalState.RED);
 
-                    setSignalStates(SignalState.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
+                        TimeUnit.SECONDS.sleep(5);
 
-                    System.out.println(this.toString());  // Debug print
+                        setSignalStates(SignalState.GREEN, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-                    TimeUnit.SECONDS.sleep(15);
+                        System.out.println(this.toString());  // Debug print
 
-                    setSignalStates(SignalState.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
+                        TimeUnit.SECONDS.sleep(15);
 
-                    System.out.println(this.toString());  // Debug print
+                        setSignalStates(SignalState.AMBER, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-                    TimeUnit.SECONDS.sleep(5);
+                        System.out.println(this.toString());  // Debug print
 
-                    setSignalStates(SignalState.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
+                        TimeUnit.SECONDS.sleep(5);
 
-                    System.out.println(this.toString());  // Debug print
+                        setSignalStates(SignalState.RED, SignalDirection.NORTH, SignalDirection.SOUTH);
 
-                    TimeUnit.SECONDS.sleep(5);
+                        System.out.println(this.toString());  // Debug print
 
-                    setSignalStates(SignalState.GREEN, SignalDirection.EAST, SignalDirection.WEST);
+                        TimeUnit.SECONDS.sleep(5);
 
-                    System.out.println(this.toString());  // Debug print
+                        setSignalStates(SignalState.GREEN, SignalDirection.EAST, SignalDirection.WEST);
 
-                    TimeUnit.SECONDS.sleep(15);
+                        System.out.println(this.toString());  // Debug print
 
-                    setSignalStates(SignalState.AMBER, SignalDirection.EAST, SignalDirection.WEST);
+                        TimeUnit.SECONDS.sleep(15);
 
-                    System.out.println(this.toString());  // Debug print
+                        setSignalStates(SignalState.AMBER, SignalDirection.EAST, SignalDirection.WEST);
 
-                    TimeUnit.SECONDS.sleep(5);
+                        System.out.println(this.toString());  // Debug print
 
-                    setSignalStates(SignalState.RED, SignalDirection.EAST, SignalDirection.WEST);
+                        TimeUnit.SECONDS.sleep(5);
 
-                    System.out.println(this.toString());  // Debug print
+                        setSignalStates(SignalState.RED, SignalDirection.EAST, SignalDirection.WEST);
 
+                        System.out.println(this.toString());  // Debug print
+
+                    }
+                }
+                else {
+                    System.out.println("Unimplemented");
+                    System.exit(0); // TODO Implement this
                 }
 
 
