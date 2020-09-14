@@ -1,12 +1,6 @@
 public class Signal {
 
-    //TODO put these enums into their own files
-    enum Type {
-        STANDARD,
-        PROTECTED_LEFT          // Unimplemented
-    }
-
-    private Type type = Type.STANDARD;
+    private SignalType type = SignalType.STANDARD;
     private SignalState state = SignalState.RED;
     private int queueLength = 0;
 
@@ -17,7 +11,7 @@ public class Signal {
 
 
     // Constructor
-    public Signal(Type type, SignalState state) {
+    public Signal(SignalType type, SignalState state) {
 
         this.type = type;
         this.state = state;
@@ -26,7 +20,7 @@ public class Signal {
 
 
     // Getters
-    public Type getType() {
+    public SignalType getType() {
         return type;
     }
 
